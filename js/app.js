@@ -2,6 +2,7 @@ const CARDS_CONTAINER = document.querySelector(".deck");
 const RESTART_BUTTON = document.querySelector(".restart");
 const ATTEMPT_TEXT = document.querySelector(".attemptText");
 const ATTEMPT_COUNTER = document.querySelector(".attemptCounter");
+const STARS_CONTAINER = document.querySelector(".stars");
 
 const ICONS = [
   "fab fa-bitcoin",
@@ -56,6 +57,29 @@ function addNewCard(icon) {
   return card;
 }
 
+function starScoreOf(attempts) {
+    if (attempts <= 10) {
+        return 3;
+    } else if (attempts <= 15) {
+        return 2;
+    } else {
+        return 1;
+    }
+}
+
+function hideStars() {
+    Array.from(STARS_CONTAINER.children)
+        .forEach(star => star.style.visibility = 'hidden');
+}
+
+function updateStars(attempts) {
+    let stars = starScoreOf(attempts);
+    hideStars();
+    for (let i = 0; i < stars; i++) {
+        STARS_CONTAINER.children[i].style.visibility = null;
+    }
+}
+
 function resetBoard() {
   Array.from(CARDS_CONTAINER.children)
         .forEach(child => CARDS_CONTAINER.removeChild(child));
@@ -71,7 +95,7 @@ function setAttempts(number) {
 }
 
 function getAttempts() {
-    return parseInt(ATTEMPT_COUNTER.textContent);
+    return parseInt(ATTEMPT_COUNTER.textContent) || 0;
 }
 
 function startGame() {
@@ -112,7 +136,8 @@ function startGame() {
               1
             );
           }
-          setAttempts((getAttempts() || 0) + 1);
+          setAttempts(getAttempts() + 1);
+          updateStars(getAttempts());
           revealedCard = undefined;
         } else {
           revealedCard = card;
@@ -121,6 +146,7 @@ function startGame() {
         if (gameIsOver()) {
           setTimeout(endGame, 1);
         }
+        
       });
     }
   }
