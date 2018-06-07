@@ -1,22 +1,53 @@
 /*
  * create an array of the icons (2 of each) and a list that holds all of the cards
  */
-const icons = ["fab fa-git", "fab fa-windows", "fab fa-apple", "fab fa-google", "fab fa-css3-alt", "fab fa-slack", "fab fa-js", "fab fa-html5", "fab fa-git", "fab fa-windows", "fab fa-apple", "fab fa-google", "fab fa-css3-alt", "fab fa-slack", "fab fa-js", "fab fa-html5"];
+const icons = [
+  "fab fa-git",
+  "fab fa-windows",
+  "fab fa-apple",
+  "fab fa-google",
+  "fab fa-css3-alt",
+  "fab fa-slack",
+  "fab fa-js",
+  "fab fa-html5",
+  "fab fa-git",
+  "fab fa-windows",
+  "fab fa-apple",
+  "fab fa-google",
+  "fab fa-css3-alt",
+  "fab fa-slack",
+  "fab fa-js",
+  "fab fa-html5"
+];
 
-const cardsContainer = document.querySelector('.deck');
+const cardsContainer = document.querySelector(".deck");
+
+let openedCards = [];
 
 // create the cards
 for (let i = 0; i < icons.length; i++) {
-    const card = document.createElement('li');
-    card.classList.add('card');
-    card.innerHTML = `<i class="${icons[i]}"></i>`;
-    cardsContainer.appendChild(card);
+  const card = document.createElement("li");
+  card.classList.add("card");
+  card.innerHTML = `<i class="${icons[i]}"></i>`;
+  cardsContainer.appendChild(card);
+
+  card.addEventListener("click", function() {
+    if (openedCards.length === 1) {
+      card.classList.add("open", "show");
+      openedCards.push(this);
+
+        if (this.innerHTML === openedCards[0].innerHTML) {
+            console.log("matched!");
+        } else {
+            console.log("NOT matched!");
+        }
+    
+    } else {
+      card.classList.add("open", "show");
+      openedCards.push(this);
+    }
+  });
 }
-
-
-
-
-
 
 /*
  * Display the cards on the page
@@ -27,19 +58,20 @@ for (let i = 0; i < icons.length; i++) {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
