@@ -1,7 +1,10 @@
 const CARDS_CONTAINER = document.querySelector(".deck");
+const RESTART_BUTTON = document.querySelector(".restart");
+const ATTEMPT_TEXT = document.querySelector(".attemptText");
+const ATTEMPT_COUNTER = document.querySelector(".attemptCounter");
 
 const ICONS = [
-  "fab fa-bitcoin", 
+  "fab fa-bitcoin",
   "fas fa-euro-sign",
   "fas fa-dollar-sign",
   "fab fa-ethereum",
@@ -32,7 +35,7 @@ function hide(...cards) {
 }
 
 function isMatched(card) {
-    return card != undefined && card.classList.contains("match");
+  return card != undefined && card.classList.contains("match");
 }
 
 function gameIsOver() {
@@ -53,51 +56,79 @@ function addNewCard(icon) {
   return card;
 }
 
-let revealedCard;
+function resetBoard() {
+  Array.from(CARDS_CONTAINER.children)
+        .forEach(child => CARDS_CONTAINER.removeChild(child));
+}
 
-for (let j = 0; j < 2; j++) {
-  let shuffledIcons = ICONS.sort(i => Math.random() < 0.7);
-  for (let i = 0; i < shuffledIcons.length; i++) {
-    let card = addNewCard(shuffledIcons[i]);
+function setAttempts(number) {
+    ATTEMPT_COUNTER.textContent = number;
+    if (number > 1 || number < 0) {
+        ATTEMPT_TEXT.textContent = "Attempts";
+    } else {
+        ATTEMPT_TEXT.textContent = "Attempt";
+    }
+}
 
-    card.addEventListener("click", () => {
-      if (revealedCard === card || isMatched(card)) {
-        return;
-      }
+function getAttempts() {
+    return parseInt(ATTEMPT_COUNTER.textContent);
+}
 
-      reveal(card);
+function startGame() {
+  let revealedCard;
 
-      if (revealedCard !== undefined) {
-        if (cardsMatch(revealedCard, card)) {
-          match(card, revealedCard);
-        } else {
-          let cardToHide = revealedCard;
-          setTimeout(
-            () =>
-              CARDS_CONTAINER.addEventListener(
-                "click",
-                (hider = function(e) {
-                  if (cardToHide !== e.target) {
-                    hide(cardToHide);
-                  }
+  for (let j = 0; j < 2; j++) {
+    let shuffledIcons = ICONS.sort(i => Math.random() < 0.7);
+    for (let i = 0; i < shuffledIcons.length; i++) {
+      let card = addNewCard(shuffledIcons[i]);
 
-                  if (card !== e.target) {
-                    hide(card);
-                  }
-                  CARDS_CONTAINER.removeEventListener("click", hider);
-                })
-              ),
-            1
-          );
+      card.addEventListener("click", () => {
+        if (revealedCard === card || isMatched(card)) {
+          return;
         }
-        revealedCard = undefined;
-      } else {
-        revealedCard = card;
-      }
 
-      if (gameIsOver()) {
-        setTimeout(endGame, 1);
-      }
-    });
+        reveal(card);
+
+        if (revealedCard !== undefined) {
+          if (cardsMatch(revealedCard, card)) {
+            match(card, revealedCard);
+          } else {
+            let cardToHide = revealedCard;
+            setTimeout(
+              () =>
+                CARDS_CONTAINER.addEventListener(
+                  "click",
+                  (hider = function(e) {
+                    if (cardToHide !== e.target) {
+                      hide(cardToHide);
+                    }
+
+                    if (card !== e.target) {
+                      hide(card);
+                    }
+                    CARDS_CONTAINER.removeEventListener("click", hider);
+                  })
+                ),
+              1
+            );
+          }
+          setAttempts((getAttempts() || 0) + 1);
+          revealedCard = undefined;
+        } else {
+          revealedCard = card;
+        }
+
+        if (gameIsOver()) {
+          setTimeout(endGame, 1);
+        }
+      });
+    }
   }
 }
+
+RESTART_BUTTON.addEventListener("click", () => {
+    resetBoard();
+    startGame();
+});
+
+startGame();
