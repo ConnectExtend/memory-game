@@ -28,33 +28,33 @@ function match(...cards) {
 }
 
 function hide(...cards) {
-    cards.forEach(card => card.classList.remove("reveal", "open"));
+  cards.forEach(card => card.classList.remove("reveal", "open"));
 }
 
 function gameIsOver() {
-    return Array.from(CARDS_CONTAINER.children)
-                .filter(e => e.tagName === "LI")
-                .every(c => c.classList.contains("match"));
+  return Array.from(CARDS_CONTAINER.children)
+    .filter(e => e.tagName === "LI")
+    .every(c => c.classList.contains("match"));
 }
 
 function endGame() {
-    alert("You won!");
+  alert("You won!");
 }
 
 function addNewCard(icon) {
-    let card = document.createElement("li");
-    card.classList.add("card");
-    card.innerHTML = `<i class="${icon}"></i>`;
-    CARDS_CONTAINER.appendChild(card);
-    return card;
+  let card = document.createElement("li");
+  card.classList.add("card");
+  card.innerHTML = `<i class="${icon}"></i>`;
+  CARDS_CONTAINER.appendChild(card);
+  return card;
 }
 
 let revealedCard;
 
 for (let j = 0; j < 2; j++) {
-  for (let i = 0; i < ICONS.length; i++) {
-
-    let card = addNewCard(ICONS[i]);
+  let shuffledIcons = ICONS.sort(i => Math.random() < 0.5);
+  for (let i = 0; i < shuffledIcons.length; i++) {
+    let card = addNewCard(shuffledIcons[i]);
 
     card.addEventListener("click", () => {
       if (revealedCard === card) {
@@ -62,39 +62,38 @@ for (let j = 0; j < 2; j++) {
       }
 
       reveal(card);
-      
+
       if (revealedCard !== undefined) {
         if (cardsMatch(revealedCard, card)) {
-            match(card, revealedCard);
+          match(card, revealedCard);
         } else {
-            hide(card, revealedCard);
+          let cardToHide = revealedCard;
+          setTimeout(
+            () =>
+              CARDS_CONTAINER.addEventListener(
+                "click",
+                (hider = function(e) {
+                  if (cardToHide !== e.target) {
+                    hide(cardToHide);
+                  }
+
+                  if (card !== e.target) {
+                    hide(card);
+                  }
+                  CARDS_CONTAINER.removeEventListener("click", hider);
+                })
+              ),
+            1
+          );
         }
         revealedCard = undefined;
       } else {
         revealedCard = card;
       }
-      
-      if (gameIsOver()) {
-          setTimeout(endGame, 1);
-      }
 
+      if (gameIsOver()) {
+        setTimeout(endGame, 1);
+      }
     });
   }
-}
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
 }
