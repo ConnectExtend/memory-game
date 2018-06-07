@@ -75,7 +75,7 @@ h1 {
     cursor: default;
 }
 
-.deck .card.show {
+.deck .card.reveal {
     font-size: 33px;
 }
 
