@@ -50,7 +50,7 @@ function getFormattedTime() {
   let elapsed = getElapsedSeconds();
   let minutes = Math.floor(elapsed / 60);
   let seconds = Math.floor(elapsed % 60);
-  return (TIMER.textContent = `${minutes}:${padNumber(seconds)}`);
+  return `${minutes}:${padNumber(seconds)}`;
 }
 
 function updateTimer() {
@@ -78,6 +78,7 @@ function getElapsedSeconds() {
 
 function stopTimer() {
   clearInterval(timerTask);
+  setElapsedSeconds(0, true);
 }
 
 function gameIsOver() {
@@ -87,8 +88,11 @@ function gameIsOver() {
 }
 
 function endGame() {
+  resetBoard();
+  drawGame();
   stopTimer();
-  alert("You won!");
+  setAttempts(0);
+  setElapsedSeconds(-1, false);
 }
 
 function addNewCard(icon) {
@@ -142,9 +146,7 @@ function getAttempts() {
   return parseInt(ATTEMPT_COUNTER.textContent) || 0;
 }
 
-function startGame() {
-  setElapsedSeconds(-1);
-
+function drawGame() {
   let revealedCard;
 
   for (let j = 0; j < 2; j++) {
@@ -158,7 +160,6 @@ function startGame() {
         }
 
         if (getElapsedSeconds() === -1) {
-          setAttempts(0);
           startTimer();
         }
 
@@ -181,6 +182,7 @@ function startGame() {
                     if (card !== e.target) {
                       hide(card);
                     }
+
                     CARDS_CONTAINER.removeEventListener("click", hider);
                   })
                 ),
@@ -202,10 +204,6 @@ function startGame() {
   }
 }
 
-RESTART_BUTTON.addEventListener("click", () => {
-  resetBoard();
-  startGame();
-  stopTimer();
-});
+RESTART_BUTTON.addEventListener("click", () => endGame());
 
-startGame();
+drawGame();
