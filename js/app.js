@@ -1,14 +1,14 @@
 const CARDS_CONTAINER = document.querySelector(".deck");
 
 const ICONS = [
-  "fa fa-diamond",
-  "fa fa-paper-plane-o",
-  "fa fa-anchor",
-  "fa fa-bolt",
-  "fa fa-cube",
-  "fa fa-leaf",
-  "fa fa-bicycle",
-  "fa fa-bomb"
+  "fab fa-bitcoin", 
+  "fas fa-euro-sign",
+  "fas fa-dollar-sign",
+  "fab fa-ethereum",
+  "fas fa-yen-sign",
+  "fas fa-ruble-sign",
+  "fas fa-pound-sign",
+  "fas fa-shekel-sign"
 ];
 
 function iconOfCard(card) {
@@ -29,6 +29,10 @@ function match(...cards) {
 
 function hide(...cards) {
   cards.forEach(card => card.classList.remove("reveal", "open"));
+}
+
+function isMatched(card) {
+    return card != undefined && card.classList.contains("match");
 }
 
 function gameIsOver() {
@@ -52,12 +56,12 @@ function addNewCard(icon) {
 let revealedCard;
 
 for (let j = 0; j < 2; j++) {
-  let shuffledIcons = ICONS.sort(i => Math.random() < 0.5);
+  let shuffledIcons = ICONS.sort(i => Math.random() < 0.7);
   for (let i = 0; i < shuffledIcons.length; i++) {
     let card = addNewCard(shuffledIcons[i]);
 
     card.addEventListener("click", () => {
-      if (revealedCard === card) {
+      if (revealedCard === card || isMatched(card)) {
         return;
       }
 
