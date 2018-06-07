@@ -23,6 +23,7 @@ const icons = [
 const cardsContainer = document.querySelector(".deck");
 
 let openedCards = [];
+let matchedCards = [];
 
 // create the cards
 for (let i = 0; i < icons.length; i++) {
@@ -32,16 +33,27 @@ for (let i = 0; i < icons.length; i++) {
   cardsContainer.appendChild(card);
 
   card.addEventListener("click", function() {
+    const currentCard = this;
+    const previousCard = openedCards[0];
+
     if (openedCards.length === 1) {
       card.classList.add("open", "show");
       openedCards.push(this);
 
-        if (this.innerHTML === openedCards[0].innerHTML) {
-            console.log("matched!");
-        } else {
-            console.log("NOT matched!");
-        }
-    
+      if (currentCard.innerHTML === previousCard.innerHTML) {
+        currentCard.classList.add("match");
+        previousCard.classList.add("match");
+
+        matchedCards.push(currentCard, previousCard);
+        openedCards = [];
+
+        gameOver();
+      } else {
+        currentCard.classList.remove("open", "show");
+        previousCard.classList.remove("open", "show");
+
+        openedCards = [];
+      }
     } else {
       card.classList.add("open", "show");
       openedCards.push(this);
@@ -49,12 +61,11 @@ for (let i = 0; i < icons.length; i++) {
   });
 }
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+function gameOver() {
+  if (matchedCards.length === icons.length) {
+    alert("Game over!");
+  }
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
