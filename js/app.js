@@ -1,7 +1,21 @@
 /*
- * Create a list that holds all of your cards
+ * create an array of the icons (2 of each) and a list that holds all of the cards
  */
-const icons = ["fab fa-git", "fab fa-windows", "fab fa-apple", "fab fa-google", "fab fa-css3-alt", "fab fa-slack", "fab fa-js", "fab fa-html5"];
+const icons = ["fab fa-git", "fab fa-windows", "fab fa-apple", "fab fa-google", "fab fa-css3-alt", "fab fa-slack", "fab fa-js", "fab fa-html5", "fab fa-git", "fab fa-windows", "fab fa-apple", "fab fa-google", "fab fa-css3-alt", "fab fa-slack", "fab fa-js", "fab fa-html5"];
+
+const cardsContainer = document.querySelector('.deck');
+
+// create the cards
+for (let i = 0; i < icons.length; i++) {
+    const card = document.createElement('li');
+    card.classList.add('card');
+    card.innerHTML = `<i class="${icons[i]}"></i>`;
+    cardsContainer.appendChild(card);
+}
+
+
+
+
 
 
 /*
