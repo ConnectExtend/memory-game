@@ -92,6 +92,7 @@ function endGame() {
   drawGame();
   stopTimer();
   setAttempts(0);
+  updateStars(getAttempts());
   setElapsedSeconds(-1, false);
 }
 
@@ -135,7 +136,7 @@ function resetBoard() {
 
 function setAttempts(number) {
   ATTEMPT_COUNTER.textContent = number;
-  if (number > 1 || number < 0) {
+  if (number > 1 || number <= 0) {
     ATTEMPT_TEXT.textContent = "Attempts";
   } else {
     ATTEMPT_TEXT.textContent = "Attempt";
@@ -204,6 +205,6 @@ function drawGame() {
   }
 }
 
-RESTART_BUTTON.addEventListener("click", () => endGame());
+RESTART_BUTTON.addEventListener("click", endGame);
 
 drawGame();
