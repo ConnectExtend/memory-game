@@ -38,7 +38,7 @@ h1 {
 }
 
 /*
- * Styles for the Score Panel
+ * Styles for the Score Panel and Modal elements
  */
 
 .scorePanel {
@@ -51,42 +51,95 @@ h1 {
   width: 49%;
 }
 
-.scorePanel .timer,
-.scorePanel .attemptHolder,
-.scorePanel .stars {
-    user-select: none;
+.scorePanel h4 {
+  margin: 0;
 }
 
-.fa-star {
-  color:#f5b50d;
+.scorePanel .timer,
+.scorePanel .stars,
+.scorePanel .attemptHolder {
+  user-select: none;
+}
+
+.scorePanel .fa-star,
+.modalStatsGroup .fa-star {
+  color: #f5b50d;
   text-shadow: -1px 0 #7647b4, 0 1px #7647b4, 1px 0 #7647b4, 0 -1px #7647b4;
 }
 
 .scorePanel .stars li,
 .scorePanel .attemptHolder li,
-.modalStats .stars li {
+.modalStatsGroup .modalStars li {
   display: inline-block;
   letter-spacing: 0.1em;
   list-style: none;
 }
 
-.modalStarText {
-    display: inline;
-}
-
 .scorePanel .timer,
 .scorePanel .attemptHolder li {
-    letter-spacing: 0.05em;
+  letter-spacing: 0.05em;
 }
 
 .scorePanel .restart {
   cursor: pointer;
   font-size: 25px;
-  color: #0a7269; 
+  color: #0a7269;
 }
 
-.attemptHolder {
-    padding: 0;
+.scorePanel .attemptHolder {
+  padding: 0;
+}
+
+.modalCongrats,
+.modalStatsHeader,
+.modalBtnGroup {
+  margin: 0;
+  text-align: center;
+}
+
+.modalCongrats {
+  font-size: 3em;
+  font-style: italic;
+  padding: 8px 0 3px;
+}
+
+.modalStatsHeader {
+  font-size: 1.8em;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+.modalStatsGroup {
+  margin: 0;
+  padding: 2px;
+  padding-left: 35%;
+}
+
+.modalStarText {
+  display: inline;
+}
+
+.modalCloseBtn,
+.modalRestartBtn {
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  font-size: 1.1em;
+  margin: 10px auto;
+  padding: 15px 20px;
+}
+
+.modalRestartBtn {
+  background-color: #784e9b;
+  border: 1px solid #53356b;
+  color: white;
+  margin-left: 190px;
+}
+
+.modalCloseBtn:hover {
+  background-color: #d9d9d9;
+}
+
+.modalRestartBtn:hover {
+  background-color: #6f1499;
 }
 
 /*
@@ -138,7 +191,7 @@ h1 {
 }
 
 /*
- * Modal (aka dialog) with accessibility support
+ * Modal (aka dialog) overlay with accessibility support
  */
 
 #modal {
@@ -165,62 +218,27 @@ h1 {
   transition: opacity 0.2s ease-in-out;
 }
 
-/* show the modal in the center of the screen */
+/* modal appears slightly above centerline */
 #modal .modalContent {
   border-radius: 5px;
   box-sizing: border-box;
   /* maintain on screen even during scroll (potentially problematic on mobile) */
   position: fixed;
-  /* when centering, try using FlexBox instead of this junk */
-  top: 32%;
+  /* TODO: for positioning, use FlexBox instead */
+  top: 44%;
   left: 50%;
   width: 600px;
   height: 350px;
   transform: translate3d(-50%, -50%, 0);
 
   /* modals are usually boxy things that are on top of everything */
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ccc;
   background: white;
   z-index: 1000;
 
-  /* zoom in from the center */
+  /* slide in  */
   transition: transform 0.2s ease-in-out;
-}
-
-#modal h1, h3, p, footer {
-  margin: 0;
-  text-align: center;
-
-}
-#modal h3 {
-    padding-top: 15px;
-  }
-
-.congrats {
-    font-size: 3em;
-    font-style: italic;
-    padding: 8px;
-}
-
-.gameStatsHeader {
-    font-size: 2em;
-    font-weight: bold;
-    padding-bottom: 5px;   
-}
-
-.closeModal, .restartGame {
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
-    font-size: 1.1em;
-    margin: 25px auto;
-    padding: 15px 20px;
-}
-
-.restartGame {
-    background-color: #784e9b;
-    border: 1px solid #53356b;
-    color: white;
-    margin-left: 190px;
 }
 
 #modal[hidden] {

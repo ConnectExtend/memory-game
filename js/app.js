@@ -8,8 +8,8 @@ const MODAL = document.querySelector("#modal");
 const MODAL_TIME = document.querySelector(".modalTime");
 const MODAL_STARS = document.querySelector(".modalStars");
 const MODAL_ATTEMPTS = document.querySelector(".modalAttempts");
-const MODAL_CLOSE_BUTTON = document.querySelector(".closeModal");
-const MODAL_PLAY_AGAIN_BUTTON = document.querySelector(".restartGame");
+const MODAL_CLOSE_BUTTON = document.querySelector(".modalCloseBtn");
+const MODAL_PLAY_AGAIN_BUTTON = document.querySelector(".modalRestartBtn");
 
 const ICONS = [
   "fab fa-bitcoin",
