@@ -2,21 +2,28 @@
 
 [I invite you to view the project here.](https://connectextend.github.io/memory-game/)
 
-# How the Game Works
-The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The cards are arranged randomly on the grid with the symbol facedown. The gameplay rules are very simple: flip over two hidden cards in an attempt to locate the ones that match!
+### How the Game Works
+The game board consists of sixteen "cards" arranged in a grid. There are eight pairs of cards in the deck, each pair has a unique symbol. At the start of the game, the cards are arranged randomly on the grid with the symbol facedown. 
+The score panel tracks the elapsed time, number of attempts at making a match,and displays 1-3 stars based on the cumulative number of attempts (fewer attempts equals more stars).
 
-Each turn:
-The player flips one card over to reveal its underlying symbol.
-The player then turns over a second card, trying to find the corresponding card with the same symbol.
-If the cards match, both cards stay flipped over.
-If the cards do not match, both cards are returned to facedown position.
-The player wins once all cards have been successfully matched.
+#### How to Win
+Successfully match all 8 pairs of cards.
+
+#### How to Play
+* Click on a card and it will flip-over to reveal its symbol
+* Click on a second card in an attempt to make a match with the first card
+* If the cards match, both cards stay flipped-over.
+* If the cards do not match, both cards are returned to facedown position.
+* Continue clicking on cards until all pairs are matched.
+
+---------------
 
 
-# Dependencies
-ally.js - a JavaScript library that simplifies certain accessibility features, functions, and behaviors.
-fonts.google.com - catalog of open source fonts 
+### Dependencies
+* ally.js - a JavaScript library that simplifies certain accessibility features, functions, and behaviors.
+* fonts.google.com - catalog of open source fonts 
+* www.toptal.com/designers/subtlepatterns - background pattern
 
 
-# Resources
-https://allyjs.io/tutorials/accessible-dialog.html
+### Resources
+* https://allyjs.io/tutorials/accessible-dialog.html
