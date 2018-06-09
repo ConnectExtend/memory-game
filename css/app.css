@@ -1,40 +1,85 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: #fff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Montserrat', sans-serif;
+  background: #fff url("../img/geometry2.png"); /* Background pattern from Subtle Patterns */
+  font-family: "Montserrat", sans-serif;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
-    color: #784e9b;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 4em;
-    font-weight: 600;
-    margin-bottom: 15px;
-    margin-top: 7px;
+  color: #784e9b;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 4em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 7px;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.scorePanel {
+  border-top: 2px solid rgb(177, 132, 235, 0.7);
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  justify-content: space-around;
+  width: 48%;
+}
+
+.scorePanel .timer,
+.scorePanel .attemptHolder,
+.scorePanel .stars {
+    user-select: none;
+}
+
+.scorePanel .stars {
+  color: rgba(75, 30, 133, 0.7);
+}
+
+.scorePanel .stars li,
+.scorePanel .attemptHolder li,
+.modalStats .stars li {
+  letter-spacing: 0.1em;
+  list-style: none;
+  display: inline-block;
+}
+
+.modalStarText {
+    display: inline;
+}
+
+.scorePanel .timer,
+.scorePanel .attemptHolder li {
+    letter-spacing: 0.05em;
+}
+
+.scorePanel .restart {
+  cursor: pointer;
 }
 
 /*
@@ -42,72 +87,176 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 3em;
+  width: 660px;
+  min-height: 680px;
+  background: linear-gradient(125deg, #aa7ecd 0%, #ccc902 90%);
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 3em;
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  height: 125px;
+  width: 125px;
+  background: #2e3d49;
+  font-size: 0;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
+  transform: rotateY(0);
+  background: #02b3e4;
+  cursor: default;
 }
 
 .deck .card.reveal {
-    font-size: 33px;
+  font-size: 33px;
 }
 
 .deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
+  cursor: default;
+  background: #02ccba;
+  font-size: 33px;
 }
 
 /*
- * Styles for the Score Panel
+ * Modal (aka dialog) with accessibility support
  */
 
-.score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 999;
 }
 
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+#modal:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 999;
+
+  /* fade in */
+  transition: opacity 0.2s ease-in-out;
 }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+/* show the modal in the center of the screen */
+#modal .modalContent {
+  border-radius: 5px;
+  box-sizing: border-box;
+  /* maintain on screen even during scroll (potentially problematic on mobile) */
+  position: fixed;
+  /* when centering, try using FlexBox instead of this junk */
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 300px;
+  transform: translate3d(-50%, -50%, 0);
+
+  /* modals are usually boxy things that are on top of everything */
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  z-index: 1000;
+
+  /* zoom in from the center */
+  transition: transform 0.2s ease-in-out;
 }
 
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
+#modal h1, h3, footer {
+  margin: 0;
+  text-align: center;
+
+}
+#modal h3, footer {
+    padding-top: 15px;
+  }
+
+.closeModal, .restartGame {
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    font-size: 1.1em;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.restartGame {
+    background-color: #784e9b;
+    border: 1px solid #53356b;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    color: white;
+    margin-left: 180px;
+    padding: 15px 20px;
+}
+
+#modal[hidden] {
+  /*
+      [hidden] usually sets display:none, which we 
+      need to revert in order to allow animations
+    */
+  display: block;
+  /*
+      actually hide the element,
+      making its contents unaccessible
+    */
+  visibility: hidden;
+  /*
+      make sure the element is out of viewport
+    */
+  transform: translate3d(0px, -1px, 0px) scale(0);
+  /*
+      delay transform until animations are done
+    */
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
+}
+
+#modal[hidden],
+#modal[hidden]::before {
+  display: block;
+  visibility: hidden;
+  transform: translate3d(0px, -1px, 0px) scale(0);
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
+}
+
+#modal[hidden]::before {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0s linear 0.2s,
+    transform 0s linear 0.2s;
+}
+
+#modal[hidden],
+#modal[hidden]::before,
+#modal[hidden] .modalContent {
+  display: block;
+  visibility: hidden;
+  transform: translate3d(0px, -1px, 0px) scale(0);
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
+}
+
+#modal[hidden]::before {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0s linear 0.2s,
+    transform 0s linear 0.2s;
+}
+
+#modal[hidden] .modalContent {
+  transform: translate3d(0px, -1px, 0px) scale(0);
+  transition: transform 0.2s ease-in-out, visibility 0s linear 0.2s;
 }

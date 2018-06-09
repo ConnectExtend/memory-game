@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Matchy Matchy Game</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Rajdhani:600">
     <link rel="stylesheet" href="css/app.css">
 </head>
@@ -18,9 +19,9 @@
             <h1>Matchy Matchy Game</h1>
         </header>
 
-        <section class="score-panel">
+        <section class="scorePanel">
 
-            <span class="timer" data-seconds="-1">0:00</span>
+            <div class="timer" data-seconds="-1">0:00</div>
 
             <ul class="stars">
                 <li>
@@ -34,8 +35,10 @@
                 </li>
             </ul>
 
-            <span class="attemptCounter">0</span>
-            <span class="attemptText">Attempts</span>
+            <ul class="attemptHolder">
+                <li class="attemptCounter" unselectable="on">0</li>
+                <li class="attemptText" unselectable="on">Attempts</li>
+            </ul>
 
             <div class="restart">
                 <i class="fas fa-redo-alt"></i>
@@ -45,9 +48,42 @@
         <ul class="deck">
 
         </ul>
-    </div>
+        </div>
 
-    <script src="js/app.js"></script>
+        <!-- Modal (aka dialog) with accessibility support -->
+        <!-- remove describedby ? -->
+        <div id="modal" role="dialog" aria-modal="true" aria-labelledby="endGameWindow" tabindex="-1" hidden>
+            <div class="modalContent">
+                <header>
+                    <h1 id="endGameWindow">Your Game Stats</h1>
+                </header>
+                <section class="modalStats">
+                    <h3>
+                        Time elapsed:
+                        <span class="modalTime">00:00</span>
+                    </h3>
+                    <h3>
+                        Star score:
+                        <span class="modalStars">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </span>
+                    </h3>
+                    <h3>
+                        Total attempts:
+                        <span class="modalAttempts">25</span>
+                    </h3>
+                </section>
+                <footer>
+                    <button type="button" class="closeModal">Close</button>
+                    <button type="button" class="restartGame">Play again?</button>
+                </footer>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/ally.js/1.4.1/ally.min.js"></script>
+        <script src="js/app.js"></script>
 </body>
 
 </html>

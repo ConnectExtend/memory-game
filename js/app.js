@@ -1,9 +1,15 @@
 const CARDS_CONTAINER = document.querySelector(".deck");
-const RESTART_BUTTON = document.querySelector(".restart");
-const ATTEMPT_TEXT = document.querySelector(".attemptText");
+const SCOREBOARD_TIMER = document.querySelector(".timer");
+const SCOREBOARD_STARS = document.querySelector(".stars");
 const ATTEMPT_COUNTER = document.querySelector(".attemptCounter");
-const STARS_CONTAINER = document.querySelector(".stars");
-const TIMER = document.querySelector(".timer");
+const ATTEMPT_TEXT = document.querySelector(".attemptText");
+const RESTART_BUTTON = document.querySelector(".restart");
+const MODAL = document.querySelector("#modal");
+const MODAL_TIME = document.querySelector(".modalTime");
+const MODAL_STARS = document.querySelector(".modalStars");
+const MODAL_ATTEMPTS = document.querySelector(".modalAttempts");
+const MODAL_CLOSE_BUTTON = document.querySelector(".closeModal");
+const MODAL_PLAY_AGAIN_BUTTON = document.querySelector(".restartGame");
 
 const ICONS = [
   "fab fa-bitcoin",
@@ -16,7 +22,19 @@ const ICONS = [
   "fas fa-shekel-sign"
 ];
 
-let timerTask;
+function hideModal() {
+  MODAL.hidden = true;
+}
+
+function updateModal() {
+  MODAL_TIME.textContent = getFormattedTime();
+  updateStars(getAttempts(), MODAL_STARS);
+  MODAL_ATTEMPTS.textContent = getAttempts();
+}
+
+function showModal() {
+  MODAL.hidden = false;
+}
 
 function iconOfCard(card) {
   return card.children[0].getAttribute("class");
@@ -30,12 +48,12 @@ function reveal(...cards) {
   cards.forEach(card => card.classList.add("reveal", "open"));
 }
 
-function match(...cards) {
-  cards.forEach(card => card.classList.add("match"));
-}
-
 function hide(...cards) {
   cards.forEach(card => card.classList.remove("reveal", "open"));
+}
+
+function match(...cards) {
+  cards.forEach(card => card.classList.add("match"));
 }
 
 function isMatched(card) {
@@ -54,15 +72,17 @@ function getFormattedTime() {
 }
 
 function updateTimer() {
-  TIMER.textContent = getFormattedTime();
+  SCOREBOARD_TIMER.textContent = getFormattedTime();
 }
 
 function setElapsedSeconds(seconds, update) {
-  TIMER.setAttribute("data-seconds", seconds);
+  SCOREBOARD_TIMER.setAttribute("data-seconds", seconds);
   if (update) {
     updateTimer();
   }
 }
+
+let timerTask;
 
 function startTimer() {
   setElapsedSeconds(1, true);
@@ -73,7 +93,7 @@ function startTimer() {
 }
 
 function getElapsedSeconds() {
-  return parseInt(TIMER.getAttribute("data-seconds")) || 0;
+  return parseInt(SCOREBOARD_TIMER.getAttribute("data-seconds")) || 0;
 }
 
 function stopTimer() {
@@ -87,12 +107,17 @@ function gameIsOver() {
     .every(c => c.classList.contains("match"));
 }
 
-function endGame() {
+function endGame(wonGame) {
+if (!wonGame) {
   resetBoard();
   drawGame();
+} else {
+  updateModal();
+  showModal();
+}
   stopTimer();
   setAttempts(0);
-  updateStars(getAttempts());
+  updateStars(getAttempts(), SCOREBOARD_STARS);
   setElapsedSeconds(-1, false);
 }
 
@@ -105,26 +130,26 @@ function addNewCard(icon) {
 }
 
 function starScoreOf(attempts) {
-  if (attempts <= 15) {
+  if (attempts <= 16) {
     return 3;
-  } else if (attempts <= 20) {
+  } else if (attempts <= 24) {
     return 2;
   } else {
     return 1;
   }
 }
 
-function hideStars() {
-  Array.from(STARS_CONTAINER.children).forEach(
+function hideStars(element) {
+  Array.from(element.children).forEach(
     star => (star.style.visibility = "hidden")
   );
 }
 
-function updateStars(attempts) {
+function updateStars(attempts, element) {
   let stars = starScoreOf(attempts);
-  hideStars();
+  hideStars(element);
   for (let i = 0; i < stars; i++) {
-    STARS_CONTAINER.children[i].style.visibility = null;
+    element.children[i].style.visibility = null;
   }
 }
 
@@ -191,20 +216,27 @@ function drawGame() {
             );
           }
           setAttempts(getAttempts() + 1);
-          updateStars(getAttempts());
+          updateStars(getAttempts(), SCOREBOARD_STARS);
           revealedCard = undefined;
         } else {
           revealedCard = card;
         }
 
         if (gameIsOver()) {
-          setTimeout(endGame, 1);
+          setTimeout(() => endGame(true), 1);
         }
       });
     }
   }
 }
 
-RESTART_BUTTON.addEventListener("click", endGame);
+RESTART_BUTTON.addEventListener("click", () => endGame(false));
+
+MODAL_CLOSE_BUTTON.addEventListener("click", hideModal);
+
+MODAL_PLAY_AGAIN_BUTTON.addEventListener("click", () => {
+  MODAL_CLOSE_BUTTON.click();
+  RESTART_BUTTON.click();
+});
 
 drawGame();
