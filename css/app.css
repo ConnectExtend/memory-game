@@ -58,8 +58,8 @@ h1 {
 }
 
 .fa-star {
-  color:#F7B914;
-  text-shadow: -1px 0 #b184eb, 0 1px #b184eb, 1px 0 #b184eb, 0 -1px #b184eb;
+  color:#f5b50d;
+  text-shadow: -1px 0 #7647b4, 0 1px #7647b4, 1px 0 #7647b4, 0 -1px #7647b4;
 }
 
 .scorePanel .stars li,
@@ -172,10 +172,10 @@ h1 {
   /* maintain on screen even during scroll (potentially problematic on mobile) */
   position: fixed;
   /* when centering, try using FlexBox instead of this junk */
-  top: 50%;
+  top: 32%;
   left: 50%;
   width: 600px;
-  height: 300px;
+  height: 350px;
   transform: translate3d(-50%, -50%, 0);
 
   /* modals are usually boxy things that are on top of everything */
@@ -188,40 +188,48 @@ h1 {
   transition: transform 0.2s ease-in-out;
 }
 
-#modal h1, h3, footer {
+#modal h1, h3, p, footer {
   margin: 0;
   text-align: center;
 
 }
-#modal h3, footer {
+#modal h3 {
     padding-top: 15px;
   }
+
+.congrats {
+    font-size: 3em;
+    font-style: italic;
+    padding: 8px;
+}
+
+.gameStatsHeader {
+    font-size: 2em;
+    font-weight: bold;
+    padding-bottom: 5px;   
+}
 
 .closeModal, .restartGame {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     font-size: 1.1em;
-    margin: 0 auto;
+    margin: 25px auto;
     padding: 15px 20px;
 }
 
 .restartGame {
     background-color: #784e9b;
     border: 1px solid #53356b;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     color: white;
-    margin-left: 180px;
-    padding: 15px 20px;
+    margin-left: 190px;
 }
 
 #modal[hidden] {
   /*
-      [hidden] usually sets display:none, which we 
-      need to revert in order to allow animations
+      [hidden] usually sets display:none, which we need to revert in order to allow animations
     */
   display: block;
   /*
-      actually hide the element,
-      making its contents unaccessible
+      actually hide the element, making its contents unaccessible
     */
   visibility: hidden;
   /*
