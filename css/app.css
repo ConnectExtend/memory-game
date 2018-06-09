@@ -48,7 +48,7 @@ h1 {
   font-size: 1.2em;
   font-weight: bold;
   justify-content: space-around;
-  width: 48%;
+  width: 49%;
 }
 
 .scorePanel .timer,
@@ -57,16 +57,17 @@ h1 {
     user-select: none;
 }
 
-.scorePanel .stars {
-  color: rgba(75, 30, 133, 0.7);
+.fa-star {
+  color:#F7B914;
+  text-shadow: -1px 0 #b184eb, 0 1px #b184eb, 1px 0 #b184eb, 0 -1px #b184eb;
 }
 
 .scorePanel .stars li,
 .scorePanel .attemptHolder li,
 .modalStats .stars li {
+  display: inline-block;
   letter-spacing: 0.1em;
   list-style: none;
-  display: inline-block;
 }
 
 .modalStarText {
@@ -80,6 +81,12 @@ h1 {
 
 .scorePanel .restart {
   cursor: pointer;
+  font-size: 25px;
+  color: #0a7269; 
+}
+
+.attemptHolder {
+    padding: 0;
 }
 
 /*
@@ -103,7 +110,7 @@ h1 {
 .deck .card {
   height: 125px;
   width: 125px;
-  background: #2e3d49;
+  background: #665a7c;
   font-size: 0;
   color: #fff;
   border-radius: 8px;
@@ -116,18 +123,18 @@ h1 {
 
 .deck .card.open {
   transform: rotateY(0);
-  background: #02b3e4;
+  background: #7647b4;
   cursor: default;
 }
 
 .deck .card.reveal {
-  font-size: 33px;
+  font-size: 45px;
 }
 
 .deck .card.match {
   cursor: default;
-  background: #02ccba;
-  font-size: 33px;
+  background: #0a7269;
+  font-size: 40px;
 }
 
 /*

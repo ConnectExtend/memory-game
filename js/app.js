@@ -108,13 +108,13 @@ function gameIsOver() {
 }
 
 function endGame(wonGame) {
-if (!wonGame) {
-  resetBoard();
-  drawGame();
-} else {
-  updateModal();
-  showModal();
-}
+  if (!wonGame) {
+    resetBoard();
+    drawGame();
+  } else {
+    updateModal();
+    showModal();
+  }
   stopTimer();
   setAttempts(0);
   updateStars(getAttempts(), SCOREBOARD_STARS);
