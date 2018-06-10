@@ -2,6 +2,8 @@
 
 [I invite you to view the project here.](https://connectextend.github.io/memory-game/)
 
+---------------
+
 ### How the Game Works
 The game board consists of sixteen "cards" arranged in a grid. There are eight pairs of cards in the deck, each pair has a unique symbol. At the start of the game, the cards are arranged randomly on the grid with the symbol facedown. 
 The score panel tracks the elapsed time, number of attempts at making a match,and displays 1-3 stars based on the cumulative number of attempts (fewer attempts equals more stars).
@@ -18,12 +20,13 @@ Successfully match all 8 pairs of cards.
 
 ---------------
 
-
 ### Dependencies
-* ally.js - a JavaScript library that simplifies certain accessibility features, functions, and behaviors.
+* ally.js - a JavaScript library that simplifies certain accessibility features, functions, and behaviors
 * fonts.google.com - catalog of open source fonts 
-* www.toptal.com/designers/subtlepatterns - background pattern
+* toptal.com/designers/subtlepatterns - background pattern; licensed under CC BY-SA 3.0
+* fontawesome.com - catalog of free and pro icons
 
 
 ### Resources
 * https://allyjs.io/tutorials/accessible-dialog.html
+* https://review.udacity.com/#!/rubrics/591/view (project rubric)
