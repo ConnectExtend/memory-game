@@ -13,13 +13,13 @@ const MODAL_PLAY_AGAIN_BUTTON = document.querySelector(".modalRestartBtn");
 
 const ICONS = [
   "fab fa-bitcoin",
-  "fas fa-euro-sign",
   "fas fa-dollar-sign",
   "fab fa-ethereum",
-  "fas fa-yen-sign",
-  "fas fa-ruble-sign",
+  "fas fa-euro-sign",
   "fas fa-pound-sign",
-  "fas fa-shekel-sign"
+  "fas fa-ruble-sign",
+  "fas fa-shekel-sign",
+  "fas fa-yen-sign"
 ];
 
 function hideModal() {

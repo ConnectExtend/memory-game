@@ -23,72 +23,97 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
 
-h1 {
+.header {
   color: #784e9b;
   font-family: "Rajdhani", sans-serif;
-  font-size: 4em;
+  font-size: 6em;
   font-weight: 600;
+  line-height: 0.9em;
   margin-bottom: 15px;
   margin-top: 7px;
+  padding: 0;
+  text-align: center;  
 }
 
 /*
  * Styles for the Score Panel and Modal elements
  */
 
-.scorePanel {
-  border-top: 2px solid rgb(177, 132, 235, 0.7);
+.scorePanelGroup {
   display: flex;
+  flex-flow: row nowrap;
   align-items: center;
+  border-top: 2px solid rgb(177, 132, 235, 0.7);
   font-size: 1.2em;
   font-weight: bold;
   justify-content: space-around;
-  width: 49%;
+  width: 670px;
 }
 
-.scorePanel h4 {
-  margin: 0;
-}
-
-.scorePanel .timer,
-.scorePanel .stars,
-.scorePanel .attemptHolder {
+.scorePanelGroup .timer,
+.scorePanelGroup .stars,
+.scorePanelGroup .attemptHolder {
   user-select: none;
 }
 
-.scorePanel .fa-star,
+.scorePanelGroup .timer,
+.scorePanelGroup .attemptHolder li {
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.scorePanelGroup .stars .fa-star,
 .modalStatsGroup .fa-star {
   color: #f5b50d;
+  letter-spacing: 0.1em;
   text-shadow: -1px 0 #7647b4, 0 1px #7647b4, 1px 0 #7647b4, 0 -1px #7647b4;
 }
 
-.scorePanel .stars li,
-.scorePanel .attemptHolder li,
-.modalStatsGroup .modalStars li {
-  display: inline-block;
-  letter-spacing: 0.1em;
-  list-style: none;
+.scorePanelGroup .attemptHolder ul {
+  padding: 0;
+  margin: 0;
 }
 
-.scorePanel .timer,
-.scorePanel .attemptHolder li {
-  letter-spacing: 0.05em;
+.scorePanelGroup .attemptHolder ul li {
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
 
-.scorePanel .restart {
+.scorePanelGroup .restart {
   cursor: pointer;
   font-size: 25px;
   color: #0a7269;
 }
 
-.scorePanel .attemptHolder {
-  padding: 0;
-}
+/* .scorePanelGroup {
+
+  flex: 1 1 auto;
+
+} */
+
+
+
+/* .scorePanelGroup .stars li,
+.scorePanelGroup .attemptHolder li,
+.modalStatsGroup .modalStars li {
+  display: inline-block;
+  letter-spacing: 0.1em;
+  list-style: none;
+} */
+
+/* .scorePanelGroup .timer,
+.scorePanelGroup .attemptHolder li {
+  letter-spacing: 0.05em;
+} */
+
+
+
 
 .modalCongrats,
 .modalStatsHeader,
@@ -147,7 +172,7 @@ h1 {
  */
 
 .deck {
-  width: 660px;
+  width: 680px;
   min-height: 680px;
   background: linear-gradient(125deg, #aa7ecd 0%, #ccc902 90%);
   padding: 32px;
