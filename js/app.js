@@ -29,7 +29,7 @@ function hideModal() {
 /**
  * Updates modal's displayed stats.
  * You should usually call this
- * before showModal()
+ * before showModal().
  */
 function updateModal() {
   MODAL_TIME.textContent = getFormattedTime(); // TODO: remove redundant code by modularizing updateTimer function
@@ -50,7 +50,7 @@ function iconOfCard(card) {
 
 /**
  * Cards are considered matching
- *  when they have the same icon.
+ * when they have the same icon.
  */
 function cardsMatch(...cards) {
   return cards.every(c1 =>
@@ -72,7 +72,7 @@ function match(...cards) {
 
 /**
  * A card is matched when:
- * - it is not undefined
+ * - it is not undefined, and
  * - it has the class "match"
  */
 function isMatched(card) {
@@ -89,7 +89,7 @@ function padNumber(number) {
 }
 
 /**
- * Returns human-readable seconds.
+ * Returns easy-to-recognize, human-readable time format.
  * For example, if 75 seconds have elapsed,
  * the return will be 1:15.
  */
@@ -150,7 +150,7 @@ function stopTimer() {
 /**
  * Returns true if all list elements
  * within the deck are matched as determined
- * by isMatched(card)
+ * by isMatched(card).
  */
 function gameIsOver() {
   return Array.from(CARDS_CONTAINER.children)
@@ -161,7 +161,7 @@ function gameIsOver() {
 /**
  * Ends the game. This will reset the game
  * and draw a new board if the user did not
- * win, otherwise it will show the end game
+ * win; otherwise, it will show the end game
  * modal.
  *
  * @param {*} wonGame Whether or not the user won the game
@@ -196,7 +196,7 @@ function addNewCard(icon) {
 /**
  * Returns how many stars
  * you get for a given amount
- * of attempts
+ * of attempts.
  */
 function starScoreOf(attempts) {
   if (attempts <= 16) {
@@ -209,7 +209,8 @@ function starScoreOf(attempts) {
 }
 
 /**
- * Hides all the stars in a given element.
+ * Hides the stars in a given element,
+ * while preserving the spacing.
  */
 function hideStars(element) {
   Array.from(element.children).forEach(
@@ -221,7 +222,7 @@ function hideStars(element) {
  * Updates the stars of an element
  * based on the given number of attempts.
  * The amount of stars shown is determined
- * by the result of starScoreOf(attempts)
+ * by the result of starScoreOf(attempts).
  */
 function updateStars(attempts, element) {
   let stars = starScoreOf(attempts);
@@ -264,14 +265,14 @@ function setAttempts(number) {
 function drawGame() {
   /*
    * Declared here so that all 
-   * cards share the same revealed card
+   * cards share the same revealed card.
    */
   let revealedCard;
 
   for (let j = 0; j < 2; j++) {
     /*
      * Here we abuse the sort function  
-     * to randomly shuffle the icons
+     * to randomly shuffle the icons.
      */
     let shuffledIcons = ICONS.sort(i => Math.random() < 0.7);
     for (let i = 0; i < shuffledIcons.length; i++) {
