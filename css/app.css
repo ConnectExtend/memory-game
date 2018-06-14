@@ -19,25 +19,29 @@ body {
 body {
   background: #fff url("../img/brushed_alu.png"); /* Background pattern from Toptal Subtle Patterns */
   font-family: "Montserrat", sans-serif;
+  font-size: 16px;
 }
 
 .container {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  flex-flow: row wrap;
+  /* align-content: center; */
   justify-content: center;
+  margin: 10px auto 7px;
+  /* padding: 0 10px; */
+  width: 455px;
 }
 
 .header {
   color: #784e9b;
   font-family: "Rajdhani", sans-serif;
-  font-size: 6em;
+  font-size: 4em;
   font-weight: 600;
   line-height: 0.9em;
   margin-bottom: 15px;
   margin-top: 7px;
   padding: 0;
-  text-align: center;  
+  text-align: center;
 }
 
 /*
@@ -46,13 +50,14 @@ body {
 
 .scorePanelGroup {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-items: center;
   border-top: 2px solid rgb(177, 132, 235, 0.7);
   font-size: 1.2em;
   font-weight: bold;
   justify-content: space-around;
-  width: 670px;
+  padding-top: 10px;
+  width: 88%;
 }
 
 .scorePanelGroup .timer,
@@ -64,7 +69,6 @@ body {
 .scorePanelGroup .timer,
 .scorePanelGroup .attemptHolder li {
   letter-spacing: 0.05em;
-  margin: 0;
 }
 
 .scorePanelGroup .stars .fa-star,
@@ -91,14 +95,6 @@ body {
   color: #0a7269;
 }
 
-/* .scorePanelGroup {
-
-  flex: 1 1 auto;
-
-} */
-
-
-
 /* .scorePanelGroup .stars li,
 .scorePanelGroup .attemptHolder li,
 .modalStatsGroup .modalStars li {
@@ -111,9 +107,6 @@ body {
 .scorePanelGroup .attemptHolder li {
   letter-spacing: 0.05em;
 } */
-
-
-
 
 .modalCongrats,
 .modalStatsHeader,
@@ -172,22 +165,23 @@ body {
  */
 
 .deck {
-  width: 680px;
-  min-height: 680px;
+  width: 425px;
+  min-height: 450px;
   background: linear-gradient(125deg, #aa7ecd 0%, #ccc902 90%);
-  padding: 32px;
   border-radius: 10px;
-  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+  /* box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5); */
+  box-shadow: 4px 8px 8px 0 rgba(46, 61, 73, 0.5);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 3em;
+  margin: 5px 0 15px;
+  padding: 6px 12px;
 }
 
 .deck .card {
-  height: 125px;
-  width: 125px;
+  height: 80px;
+  width: calc((100% - 80px) / 4);
   background: #665a7c;
   font-size: 0;
   color: #fff;
@@ -200,9 +194,9 @@ body {
 }
 
 .deck .card.open {
-  transform: rotateY(0);
   background: #7647b4;
   cursor: default;
+  transform: rotateY(0);
 }
 
 .deck .card.reveal {
@@ -318,3 +312,44 @@ body {
   transform: translate3d(0px, -1px, 0px) scale(0);
   transition: transform 0.2s ease-in-out, visibility 0s linear 0.2s;
 }
+
+/* Media Queries
+@media only screen and (min-width: 750px) {
+
+  .deck {
+      width: 660px;
+      min-height: 680px;
+      padding: 32px;
+  }
+
+  .deck .card {
+      height: 125px;
+      width: 125px;
+  }
+
+  .score-panel {
+      font-size: 24px;
+      width: 600px;
+  }
+
+}
+
+@media only screen and (max-width: 749px) {
+
+  .deck {
+      width: 450px;
+      min-height: 450px;
+      padding: 24px;
+  }
+
+  .deck .card {
+      height: 85px;
+      width: 85px;
+  }
+
+  .score-panel {
+      font-size: 18px;
+      width: 420px;
+  }
+
+} */
