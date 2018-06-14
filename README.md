@@ -20,6 +20,9 @@ Successfully match all 8 pairs of cards.
 
 ---------------
 
+### Points of pride
+
+
 ### Dependencies
 * ally.js - a JavaScript library that simplifies certain accessibility features, functions, and behaviors
 * fonts.google.com - catalog of open source fonts 
