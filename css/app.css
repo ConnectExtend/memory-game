@@ -25,10 +25,8 @@ body {
 .container {
   display: flex;
   flex-flow: row wrap;
-  /* align-content: center; */
   justify-content: center;
   margin: 10px auto 7px;
-  /* padding: 0 10px; */
   width: 455px;
 }
 
@@ -95,19 +93,6 @@ body {
   color: #0a7269;
 }
 
-/* .scorePanelGroup .stars li,
-.scorePanelGroup .attemptHolder li,
-.modalStatsGroup .modalStars li {
-  display: inline-block;
-  letter-spacing: 0.1em;
-  list-style: none;
-} */
-
-/* .scorePanelGroup .timer,
-.scorePanelGroup .attemptHolder li {
-  letter-spacing: 0.05em;
-} */
-
 .modalCongrats,
 .modalStatsHeader,
 .modalBtnGroup {
@@ -116,21 +101,29 @@ body {
 }
 
 .modalCongrats {
-  font-size: 3em;
+  padding: 8px 0 18px;
+  font-size: 2em;
   font-style: italic;
-  padding: 8px 0 3px;
 }
 
 .modalStatsHeader {
-  font-size: 1.8em;
+  font-size: 1.65em;
   font-weight: bold;
-  padding-bottom: 2px;
+  margin: 0;
 }
 
 .modalStatsGroup {
   margin: 0;
-  padding: 2px;
-  padding-left: 35%;
+  padding: 0 0 2px;
+  padding-left: 33%;
+}
+
+.modalStatsGroup h3:first-child {
+  margin-top: 15px;
+}
+
+.modalStatsGroup h3:last-child {
+  margin-bottom: 11px;
 }
 
 .modalStarText {
@@ -141,14 +134,14 @@ body {
 .modalRestartBtn {
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
   font-size: 1.1em;
-  margin: 10px auto;
+  margin: 8px auto 10px;
   padding: 15px 20px;
 }
 
 .modalRestartBtn {
   background-color: #784e9b;
   border: 1px solid #53356b;
-  color: white;
+  color: #fff;
   margin-left: 190px;
 }
 
@@ -165,16 +158,15 @@ body {
  */
 
 .deck {
-  width: 425px;
   min-height: 450px;
-  background: linear-gradient(125deg, #aa7ecd 0%, #ccc902 90%);
-  border-radius: 10px;
-  /* box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5); */
-  box-shadow: 4px 8px 8px 0 rgba(46, 61, 73, 0.5);
+  width: 425px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(125deg, #aa7ecd 0%, #ccc902 90%);
+  border-radius: 10px;
+  box-shadow: 4px 8px 8px 0 rgba(46, 61, 73, 0.5);
   margin: 5px 0 15px;
   padding: 6px 12px;
 }
@@ -182,15 +174,15 @@ body {
 .deck .card {
   height: 80px;
   width: calc((100% - 80px) / 4);
-  background: #665a7c;
-  font-size: 0;
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: #665a7c;
+  border-radius: 8px;
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0;
 }
 
 .deck .card.open {
@@ -204,8 +196,8 @@ body {
 }
 
 .deck .card.match {
-  cursor: default;
   background: #0a7269;
+  cursor: default;
   font-size: 40px;
 }
 
@@ -239,24 +231,21 @@ body {
 
 /* modal appears slightly above centerline */
 #modal .modalContent {
+  background: #fff;
+  border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
-  /* maintain on screen even during scroll (potentially problematic on mobile) */
-  position: fixed;
-  /* TODO: for positioning, use FlexBox instead */
-  top: 44%;
-  left: 50%;
-  width: 600px;
-  height: 350px;
-  transform: translate3d(-50%, -50%, 0);
-
-  /* modals are usually boxy things that are on top of everything */
   padding: 5px;
-  border: 1px solid #ccc;
-  background: white;
+  /* maintain on-screen even during scroll */
+  position: fixed;
+  top: 33%;
+  left: 50%;
+  height: 325px;
+  width: 500px;
+  transform: translate3d(-50%, -50%, 0);
   z-index: 1000;
 
-  /* slide in  */
+  /* slide in */
   transition: transform 0.2s ease-in-out;
 }
 
@@ -313,43 +302,91 @@ body {
   transition: transform 0.2s ease-in-out, visibility 0s linear 0.2s;
 }
 
-/* Media Queries
-@media only screen and (min-width: 750px) {
+/* Media Queries */
+@media screen and (min-width: 799px) {
+  .container {
+    width: 775px;
+  }
+
+  .header {
+    font-size: 6em;
+    line-height: 1em;
+    margin-bottom: 25px;
+    margin-top: 20px;
+  }
+
+  .scorePanelGroup {
+    border-top: 3px solid rgb(177, 132, 235, 0.7);
+    font-size: 1.6em;
+    padding: 20px 0 15px;
+    width: 93%;
+  }
 
   .deck {
-      width: 660px;
-      min-height: 680px;
-      padding: 32px;
+    min-height: 780px;
+    width: 745px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    padding: 5px;
+    margin: 5px 0 15px;
+    padding: 25px 42px;
   }
 
   .deck .card {
-      height: 125px;
-      width: 125px;
+    height: 132px;
+    width: calc((100% - 132px) / 4);
   }
 
-  .score-panel {
-      font-size: 24px;
-      width: 600px;
+  .deck .card.reveal {
+    font-size: 75px;
   }
 
+  .deck .card.match {
+    font-size: 60px;
+  }
+
+  #modal .modalContent {
+    position: fixed;
+    top: 83%;
+    left: 50%;
+    height: 360px;
+    width: 1780px;
+  }
+
+  .modalCongrats {
+    padding: 8px 0 18px;
+    font-size: 2em;
+    font-style: italic;
+    color: red;
+  }
+
+  .modalStatsHeader {
+    font-size: 1.65em;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .modalStatsGroup {
+    margin: 0;
+    padding: 0 0 2px;
+    padding-left: 33%;
+  }
+
+  .modalStatsGroup h3:first-child {
+    margin-top: 15px;
+  }
+
+  .modalStatsGroup h3:last-child {
+    margin-bottom: 11px;
+  }
+
+  .modalCloseBtn,
+  .modalRestartBtn {
+    font-size: 1.1em;
+    margin: 8px auto 10px;
+    padding: 15px 20px;
+  }
+
+  .modalRestartBtn {
+    margin-left: 190px;
+  }
 }
-
-@media only screen and (max-width: 749px) {
-
-  .deck {
-      width: 450px;
-      min-height: 450px;
-      padding: 24px;
-  }
-
-  .deck .card {
-      height: 85px;
-      width: 85px;
-  }
-
-  .score-panel {
-      font-size: 18px;
-      width: 420px;
-  }
-
-} */
