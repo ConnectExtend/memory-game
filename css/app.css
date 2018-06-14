@@ -50,10 +50,10 @@ body {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: space-around;
   border-top: 2px solid rgb(177, 132, 235, 0.7);
   font-size: 1.2em;
-  font-weight: bold;
-  justify-content: space-around;
+  font-weight: bold;  
   padding-top: 10px;
   width: 88%;
 }
@@ -88,9 +88,9 @@ body {
 }
 
 .scorePanelGroup .restart {
-  cursor: pointer;
-  font-size: 25px;
   color: #0a7269;
+  cursor: pointer;
+  font-size: 25px;  
 }
 
 .modalCongrats,
@@ -100,10 +100,10 @@ body {
   text-align: center;
 }
 
-.modalCongrats {
-  padding: 8px 0 18px;
+.modalCongrats {  
   font-size: 2em;
   font-style: italic;
+  padding: 8px 0 18px;
 }
 
 .modalStatsHeader {
@@ -158,8 +158,8 @@ body {
  */
 
 .deck {
-  min-height: 450px;
   width: 425px;
+  min-height: 450px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -172,8 +172,8 @@ body {
 }
 
 .deck .card {
-  height: 80px;
   width: calc((100% - 80px) / 4);
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,8 +240,8 @@ body {
   position: fixed;
   top: 33%;
   left: 50%;
-  height: 325px;
   width: 500px;
+  height: 325px;
   transform: translate3d(-50%, -50%, 0);
   z-index: 1000;
 
@@ -271,9 +271,9 @@ body {
 #modal[hidden],
 #modal[hidden]::before {
   display: block;
-  visibility: hidden;
   transform: translate3d(0px, -1px, 0px) scale(0);
-  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;  
+  visibility: hidden;
 }
 
 #modal[hidden]::before {
@@ -286,9 +286,9 @@ body {
 #modal[hidden]::before,
 #modal[hidden] .modalContent {
   display: block;
-  visibility: hidden;
   transform: translate3d(0px, -1px, 0px) scale(0);
-  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;  
+  visibility: hidden;
 }
 
 #modal[hidden]::before {
@@ -323,17 +323,16 @@ body {
   }
 
   .deck {
-    min-height: 780px;
     width: 745px;
+    min-height: 780px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    padding: 5px;
     margin: 5px 0 15px;
     padding: 25px 42px;
   }
 
   .deck .card {
-    height: 132px;
     width: calc((100% - 132px) / 4);
+    height: 132px;
   }
 
   .deck .card.reveal {
@@ -346,47 +345,41 @@ body {
 
   #modal .modalContent {
     position: fixed;
-    top: 83%;
+    top: 36.5%;
     left: 50%;
-    height: 360px;
-    width: 1780px;
+    width: 800px;
+    height: 480px;    
   }
 
   .modalCongrats {
-    padding: 8px 0 18px;
-    font-size: 2em;
-    font-style: italic;
-    color: red;
+    font-size: 3em;
+    padding: 30px 0 25px;    
   }
 
   .modalStatsHeader {
-    font-size: 1.65em;
-    font-weight: bold;
-    margin: 0;
+    font-size: 2.5em;
   }
 
   .modalStatsGroup {
-    margin: 0;
-    padding: 0 0 2px;
-    padding-left: 33%;
+    font-size: 1.5em;
+    /* padding-left: 33%; */
   }
 
   .modalStatsGroup h3:first-child {
-    margin-top: 15px;
+    margin-top: 18px;
   }
 
   .modalStatsGroup h3:last-child {
-    margin-bottom: 11px;
+    margin-bottom: 20px;
   }
 
   .modalCloseBtn,
   .modalRestartBtn {
-    font-size: 1.1em;
-    margin: 8px auto 10px;
-    padding: 15px 20px;
+    font-size: 1.7em;
+    padding: 18px 26px;
   }
 
   .modalRestartBtn {
-    margin-left: 190px;
+    margin-left: 300px;
   }
 }
