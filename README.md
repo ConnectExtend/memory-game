@@ -21,7 +21,12 @@ Successfully match all 8 pairs of cards.
 ---------------
 
 ### Points of pride
+* Mobile-first design
+* Flexbox
+* Accessibility (#a11y) / Usability supports: Color choices, font sizing, modal functionality, comfortable touch targets
+* Active version-control history with subject headings
 
+---------------
 
 ### Dependencies
 * ally.js - a JavaScript library that simplifies certain accessibility features, functions, and behaviors
@@ -33,4 +38,4 @@ Successfully match all 8 pairs of cards.
 ### Resources
 * https://allyjs.io/tutorials/accessible-dialog.html
 * https://review.udacity.com/#!/rubrics/591/view (project rubric)
-* Eric M (assisted with cleaning-up JS code and styling of code comments)
+* Eric (assisted with cleaning-up JS code and styling of code comments)
