@@ -1,6 +1,6 @@
 ## Matchy Matchy Game (memory game)
 
-[I invite you to view the project here.](https://connectextend.github.io/memory-game/)
+[Click here to play the game.](https://connectextend.github.io/memory-game/)
 
 ---------------
 
@@ -30,3 +30,4 @@ Successfully match all 8 pairs of cards.
 ### Resources
 * https://allyjs.io/tutorials/accessible-dialog.html
 * https://review.udacity.com/#!/rubrics/591/view (project rubric)
+* Eric M (assisted with cleaning-up JS code and styling of code comments)
