@@ -53,7 +53,7 @@ body {
   justify-content: space-around;
   border-top: 2px solid rgb(177, 132, 235, 0.7);
   font-size: 1.2em;
-  font-weight: bold;  
+  font-weight: bold;
   padding-top: 10px;
   width: 88%;
 }
@@ -90,7 +90,7 @@ body {
 .scorePanelGroup .restart {
   color: #0a7269;
   cursor: pointer;
-  font-size: 25px;  
+  font-size: 25px;
 }
 
 .modalCongrats,
@@ -100,7 +100,7 @@ body {
   text-align: center;
 }
 
-.modalCongrats {  
+.modalCongrats {
   font-size: 2em;
   font-style: italic;
   padding: 8px 0 18px;
@@ -272,7 +272,7 @@ body {
 #modal[hidden]::before {
   display: block;
   transform: translate3d(0px, -1px, 0px) scale(0);
-  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;  
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
   visibility: hidden;
 }
 
@@ -287,7 +287,7 @@ body {
 #modal[hidden] .modalContent {
   display: block;
   transform: translate3d(0px, -1px, 0px) scale(0);
-  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;  
+  transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
   visibility: hidden;
 }
 
@@ -322,6 +322,10 @@ body {
     width: 93%;
   }
 
+  .scorePanelGroup .restart {
+    font-size: 30px;
+  }
+
   .deck {
     width: 745px;
     min-height: 780px;
@@ -348,12 +352,12 @@ body {
     top: 36.5%;
     left: 50%;
     width: 800px;
-    height: 480px;    
+    height: 480px;
   }
 
   .modalCongrats {
     font-size: 3em;
-    padding: 30px 0 25px;    
+    padding: 30px 0 25px;
   }
 
   .modalStatsHeader {
@@ -362,7 +366,6 @@ body {
 
   .modalStatsGroup {
     font-size: 1.5em;
-    /* padding-left: 33%; */
   }
 
   .modalStatsGroup h3:first-child {
@@ -381,5 +384,90 @@ body {
 
   .modalRestartBtn {
     margin-left: 300px;
+  }
+}
+
+/* Media Queries */
+@media screen and (min-width: 1250px) {
+  .container {
+    width: 1055px;
+    max-width: 1250px;
+  }
+
+  .header {
+    font-size: 7em;
+    line-height: 1.1em;
+  }
+
+  .scorePanelGroup {
+    border-top: 4px solid rgb(177, 132, 235, 0.7);
+    font-size: 2.2em;
+    width: 93%;
+  }
+
+  .scorePanelGroup .restart {
+    font-size: 40px;
+  }
+
+  .deck {
+    width: 1010px;
+    min-height: 1065px;
+    padding: 15px 28px;
+  }
+
+  .deck .card {
+    width: calc((100% - 125px) / 4);
+    height: 190px;
+  }
+
+  .deck .card.reveal {
+    font-size: 95px;
+  }
+
+  .deck .card.match {
+    font-size: 80px;
+  }
+
+  #modal .modalContent {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    width: 800px;
+    height: 480px;
+  }
+
+  .modalCongrats {
+    font-size: 3.25em;
+  }
+
+  .modalStatsHeader {
+    font-size: 2.75em;
+  }
+
+  .modalStatsGroup {
+    font-size: 1.75em;
+    padding-left: 31%;
+  }
+
+  .modalStatsGroup h3 {
+    margin: 12px 0;
+  }
+
+  .modalStatsGroup h3:first-child {
+    margin-top: 16px;
+  }
+
+  .modalStatsGroup h3:last-child {
+    margin-bottom: 22px;
+  }
+
+  .modalCloseBtn,
+  .modalRestartBtn {
+    font-size: 2em;
+    padding: 18px 28px;
+  }
+
+  .modalRestartBtn {
+    margin-left: 325px;
   }
 }
