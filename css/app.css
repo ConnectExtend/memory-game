@@ -17,7 +17,7 @@ body {
 }
 
 body {
-  background: #fff url("../img/brushed_alu.png"); /* Background pattern from Toptal Subtle Patterns */
+  background: #fff url(../img/brushed_alu.png); /* Background pattern from Toptal Subtle Patterns */
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
 }
@@ -32,12 +32,10 @@ body {
 
 .header {
   color: #784e9b;
-  font-family: "Rajdhani", sans-serif;
-  font-size: 4em;
+  font: 3.75em / 0.9 "Rajdhani", sans-serif;
   font-weight: 600;
-  line-height: 0.9em;
-  margin-bottom: 15px;
-  margin-top: 7px;
+  margin-bottom: 5px;
+  margin-top: 3px;
   padding: 0;
   text-align: center;
 }
@@ -90,7 +88,7 @@ body {
 .scorePanelGroup .restart {
   color: #0a7269;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 1.2em;
 }
 
 .modalCongrats,
@@ -101,21 +99,21 @@ body {
 }
 
 .modalCongrats {
-  font-size: 2em;
+  font-size: 1.6em;
   font-style: italic;
-  padding: 8px 0 18px;
+  padding: 6px 0 15px;
 }
 
 .modalStatsHeader {
-  font-size: 1.65em;
+  font-size: 1.4em;
   font-weight: bold;
   margin: 0;
 }
 
 .modalStatsGroup {
   margin: 0;
-  padding: 0 0 2px;
-  padding-left: 33%;
+  padding: 0;
+  padding-left: 30%;
 }
 
 .modalStatsGroup h3:first-child {
@@ -134,7 +132,7 @@ body {
 .modalRestartBtn {
   box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
   font-size: 1.1em;
-  margin: 8px auto 10px;
+  margin: 12px auto 5px;
   padding: 15px 20px;
 }
 
@@ -142,7 +140,7 @@ body {
   background-color: #784e9b;
   border: 1px solid #53356b;
   color: #fff;
-  margin-left: 190px;
+  margin-left: 100px;
 }
 
 .modalCloseBtn:hover {
@@ -159,7 +157,7 @@ body {
 
 .deck {
   width: 425px;
-  min-height: 450px;
+  min-height: 400px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -238,10 +236,10 @@ body {
   padding: 5px;
   /* maintain on-screen even during scroll */
   position: fixed;
-  top: 33%;
+  top: 45%;
   left: 50%;
-  width: 500px;
-  height: 325px;
+  width: 400px;
+  height: 300px;
   transform: translate3d(-50%, -50%, 0);
   z-index: 1000;
 
@@ -261,7 +259,7 @@ body {
   /*
       make sure the element is out of viewport
     */
-  transform: translate3d(0px, -1px, 0px) scale(0);
+  transform: translate3d(0, -1px, 0) scale(0);
   /*
       delay transform until animations are done
     */
@@ -271,7 +269,7 @@ body {
 #modal[hidden],
 #modal[hidden]::before {
   display: block;
-  transform: translate3d(0px, -1px, 0px) scale(0);
+  transform: translate3d(0, -1px, 0) scale(0);
   transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
   visibility: hidden;
 }
@@ -286,7 +284,7 @@ body {
 #modal[hidden]::before,
 #modal[hidden] .modalContent {
   display: block;
-  transform: translate3d(0px, -1px, 0px) scale(0);
+  transform: translate3d(0, -1px, 0) scale(0);
   transition: visibility 0s linear 0.2s, transform 0s linear 0.2s;
   visibility: hidden;
 }
@@ -298,74 +296,75 @@ body {
 }
 
 #modal[hidden] .modalContent {
-  transform: translate3d(0px, -1px, 0px) scale(0);
+  transform: translate3d(0, -1px, 0) scale(0);
   transition: transform 0.2s ease-in-out, visibility 0s linear 0.2s;
 }
 
 /* Media Queries */
 @media screen and (min-width: 799px) {
   .container {
-    width: 775px;
+    width: 675px;
   }
 
   .header {
-    font-size: 6em;
+    font-size: 3.5em;
     line-height: 1em;
-    margin-bottom: 25px;
-    margin-top: 20px;
+    margin-bottom: 8px;
+    margin-top: 5px;
   }
 
   .scorePanelGroup {
-    border-top: 3px solid rgb(177, 132, 235, 0.7);
-    font-size: 1.6em;
-    padding: 20px 0 15px;
-    width: 93%;
+    border-top: 2px solid rgb(177, 132, 235, 0.7);
+    font-size: 1.2em;
+    padding: 12px 0 2px;
+    width: 90%;
   }
 
   .scorePanelGroup .restart {
-    font-size: 30px;
+    font-size: 1.3em;
   }
 
   .deck {
-    width: 745px;
-    min-height: 780px;
+    width: 625px;
+    min-height: 480px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     margin: 5px 0 15px;
-    padding: 25px 42px;
+    padding: 10px 42px;
   }
 
   .deck .card {
-    width: calc((100% - 132px) / 4);
-    height: 132px;
+    width: calc((100% - 100px) / 4);
+    height: 100px;
   }
 
   .deck .card.reveal {
-    font-size: 75px;
+    font-size: 65px;
   }
 
   .deck .card.match {
-    font-size: 60px;
+    font-size: 50px;
   }
 
   #modal .modalContent {
     position: fixed;
-    top: 36.5%;
+    top: 45%;
     left: 50%;
-    width: 800px;
-    height: 480px;
+    width: 550px;
+    height: 400px;
   }
 
   .modalCongrats {
-    font-size: 3em;
-    padding: 30px 0 25px;
+    font-size: 2.25em;
+    padding: 15px 0 20px;
   }
 
   .modalStatsHeader {
-    font-size: 2.5em;
+    font-size: 2em;
   }
 
   .modalStatsGroup {
-    font-size: 1.5em;
+    font-size: 1.25em;
+    padding-left: 32%;
   }
 
   .modalStatsGroup h3:first-child {
@@ -378,96 +377,11 @@ body {
 
   .modalCloseBtn,
   .modalRestartBtn {
-    font-size: 1.7em;
-    padding: 18px 26px;
+    font-size: 1.5em;
+    padding: 16px 24px;
   }
 
   .modalRestartBtn {
-    margin-left: 300px;
-  }
-}
-
-/* Media Queries */
-@media screen and (min-width: 1250px) {
-  .container {
-    width: 1055px;
-    max-width: 1250px;
-  }
-
-  .header {
-    font-size: 7em;
-    line-height: 1.1em;
-  }
-
-  .scorePanelGroup {
-    border-top: 4px solid rgb(177, 132, 235, 0.7);
-    font-size: 2.2em;
-    width: 93%;
-  }
-
-  .scorePanelGroup .restart {
-    font-size: 40px;
-  }
-
-  .deck {
-    width: 1010px;
-    min-height: 1065px;
-    padding: 15px 28px;
-  }
-
-  .deck .card {
-    width: calc((100% - 125px) / 4);
-    height: 190px;
-  }
-
-  .deck .card.reveal {
-    font-size: 95px;
-  }
-
-  .deck .card.match {
-    font-size: 80px;
-  }
-
-  #modal .modalContent {
-    position: fixed;
-    top: 55%;
-    left: 50%;
-    width: 800px;
-    height: 480px;
-  }
-
-  .modalCongrats {
-    font-size: 3.25em;
-  }
-
-  .modalStatsHeader {
-    font-size: 2.75em;
-  }
-
-  .modalStatsGroup {
-    font-size: 1.75em;
-    padding-left: 31%;
-  }
-
-  .modalStatsGroup h3 {
-    margin: 12px 0;
-  }
-
-  .modalStatsGroup h3:first-child {
-    margin-top: 16px;
-  }
-
-  .modalStatsGroup h3:last-child {
-    margin-bottom: 22px;
-  }
-
-  .modalCloseBtn,
-  .modalRestartBtn {
-    font-size: 2em;
-    padding: 18px 28px;
-  }
-
-  .modalRestartBtn {
-    margin-left: 325px;
+    margin-left: 170px;
   }
 }

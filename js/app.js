@@ -1,25 +1,25 @@
-const CARDS_CONTAINER = document.querySelector(".deck");
-const SCOREBOARD_TIMER = document.querySelector(".timer");
-const SCOREBOARD_STARS = document.querySelector(".stars");
-const ATTEMPT_COUNTER = document.querySelector(".attemptCounter");
-const ATTEMPT_TEXT = document.querySelector(".attemptText");
-const RESTART_BUTTON = document.querySelector(".restart");
-const MODAL = document.querySelector("#modal");
-const MODAL_TIME = document.querySelector(".modalTime");
-const MODAL_STARS = document.querySelector(".modalStars");
-const MODAL_ATTEMPTS = document.querySelector(".modalAttempts");
-const MODAL_CLOSE_BUTTON = document.querySelector(".modalCloseBtn");
-const MODAL_PLAY_AGAIN_BUTTON = document.querySelector(".modalRestartBtn");
+const CARDS_CONTAINER = document.querySelector('.deck');
+const SCOREBOARD_TIMER = document.querySelector('.timer');
+const SCOREBOARD_STARS = document.querySelector('.stars');
+const ATTEMPT_COUNTER = document.querySelector('.attemptCounter');
+const ATTEMPT_TEXT = document.querySelector('.attemptText');
+const RESTART_BUTTON = document.querySelector('.restart');
+const MODAL = document.querySelector('#modal');
+const MODAL_TIME = document.querySelector('.modalTime');
+const MODAL_STARS = document.querySelector('.modalStars');
+const MODAL_ATTEMPTS = document.querySelector('.modalAttempts');
+const MODAL_CLOSE_BUTTON = document.querySelector('.modalCloseBtn');
+const MODAL_PLAY_AGAIN_BUTTON = document.querySelector('.modalRestartBtn');
 
 const ICONS = [
-  "fab fa-bitcoin",
-  "fas fa-dollar-sign",
-  "fab fa-ethereum",
-  "fas fa-euro-sign",
-  "fas fa-pound-sign",
-  "fas fa-ruble-sign",
-  "fas fa-shekel-sign",
-  "fas fa-yen-sign"
+  'fab fa-bitcoin',
+  'fas fa-dollar-sign',
+  'fab fa-ethereum',
+  'fas fa-euro-sign',
+  'fas fa-pound-sign',
+  'fas fa-ruble-sign',
+  'fas fa-shekel-sign',
+  'fas fa-yen-sign'
 ];
 
 function hideModal() {
@@ -32,7 +32,7 @@ function hideModal() {
  * before showModal().
  */
 function updateModal() {
-  MODAL_TIME.textContent = getFormattedTime(); // TODO: remove redundant code by modularizing updateTimer function
+  updateTimer(MODAL_TIME);
   updateStars(getAttempts(), MODAL_STARS);
   MODAL_ATTEMPTS.textContent = getAttempts();
 }
@@ -45,7 +45,7 @@ function showModal() {
  * Returns the Font Awesome icon name of this card
  */
 function iconOfCard(card) {
-  return card.children[0].getAttribute("class");
+  return card.children[0].getAttribute('class');
 }
 
 /**
@@ -59,24 +59,24 @@ function cardsMatch(...cards) {
 }
 
 function reveal(...cards) {
-  cards.forEach(card => card.classList.add("reveal", "open"));
+  cards.forEach(card => card.classList.add('reveal', 'open'));
 }
 
 function hide(...cards) {
-  cards.forEach(card => card.classList.remove("reveal", "open"));
+  cards.forEach(card => card.classList.remove('reveal', 'open'));
 }
 
 function match(...cards) {
-  cards.forEach(card => card.classList.add("match"));
+  cards.forEach(card => card.classList.add('match'));
 }
 
 /**
  * A card is matched when:
  * - it is not undefined, and
- * - it has the class "match"
+ * - it has the class 'match'
  */
 function isMatched(card) {
-  return card != undefined && card.classList.contains("match");
+  return card != undefined && card.classList.contains('match');
 }
 
 /**
@@ -85,7 +85,7 @@ function isMatched(card) {
  * and the input 50 would return 50.
  */
 function padNumber(number) {
-  return number.toString().length == 1 ? "0" + number : number.toString();
+  return number.toString().length == 1 ? '0' + number : number.toString();
 }
 
 /**
@@ -104,8 +104,8 @@ function getFormattedTime() {
  * Updates the score panel timer
  * to the formatted elapsed time.
  */
-function updateTimer() {
-  SCOREBOARD_TIMER.textContent = getFormattedTime();
+function updateTimer(element) {
+  element.textContent = getFormattedTime();
 }
 
 /**
@@ -116,9 +116,9 @@ function updateTimer() {
  * @param {boolean} update Whether or not to update the displayed time
  */
 function setElapsedSeconds(seconds, update) {
-  SCOREBOARD_TIMER.setAttribute("data-seconds", seconds);
+  SCOREBOARD_TIMER.setAttribute('data-seconds', seconds);
   if (update) {
-    updateTimer();
+    updateTimer(SCOREBOARD_TIMER);
   }
 }
 
@@ -136,7 +136,7 @@ function startTimer() {
 }
 
 function getElapsedSeconds() {
-  return parseInt(SCOREBOARD_TIMER.getAttribute("data-seconds")) || 0;
+  return parseInt(SCOREBOARD_TIMER.getAttribute('data-seconds')) || 0;
 }
 
 /**
@@ -154,7 +154,7 @@ function stopTimer() {
  */
 function gameIsOver() {
   return Array.from(CARDS_CONTAINER.children)
-    .filter(e => e.tagName === "LI")
+    .filter(e => e.tagName === 'LI')
     .every(c => isMatched(c));
 }
 
@@ -186,9 +186,9 @@ function endGame(wonGame) {
  * @param {*} icon The Font Awesome icon to use
  */
 function addNewCard(icon) {
-  let card = document.createElement("li");
-  card.classList.add("card");
-  card.innerHTML = `<i class="${icon}"></i>`;
+  let card = document.createElement('li');
+  card.classList.add('card');
+  card.innerHTML = `<i class='${icon}'></i>`;
   CARDS_CONTAINER.appendChild(card);
   return card;
 }
@@ -214,7 +214,7 @@ function starScoreOf(attempts) {
  */
 function hideStars(element) {
   Array.from(element.children).forEach(
-    star => (star.style.visibility = "hidden")
+    star => (star.style.visibility = 'hidden')
   );
 }
 
@@ -252,9 +252,9 @@ function getAttempts() {
 function setAttempts(number) {
   ATTEMPT_COUNTER.textContent = number;
   if (number > 1 || number <= 0) {
-    ATTEMPT_TEXT.textContent = "Attempts";
+    ATTEMPT_TEXT.textContent = 'Attempts';
   } else {
-    ATTEMPT_TEXT.textContent = "Attempt";
+    ATTEMPT_TEXT.textContent = 'Attempt';
   }
 }
 
@@ -278,7 +278,7 @@ function drawGame() {
     for (let i = 0; i < shuffledIcons.length; i++) {
       let card = addNewCard(shuffledIcons[i]);
 
-      card.addEventListener("click", () => {
+      card.addEventListener('click', () => {
         // Ignore clicks on same card or already matched cards
         if (revealedCard === card || isMatched(card)) {
           return;
@@ -302,11 +302,11 @@ function drawGame() {
             setTimeout(
               () =>
                 CARDS_CONTAINER.addEventListener(
-                  "click",
+                  'click',
                   (hider = e => {
                     // If they clicked on the icon, we want its parent element (the card)
                     let targetCard =
-                      e.target.tagName === "I"
+                      e.target.tagName === 'I'
                         ? e.target.parentElement
                         : e.target;
 
@@ -315,7 +315,7 @@ function drawGame() {
                       .filter(c => c !== targetCard)
                       .forEach(c => hide(c));
 
-                    CARDS_CONTAINER.removeEventListener("click", hider);
+                    CARDS_CONTAINER.removeEventListener('click', hider);
                   })
                 ),
               1
@@ -335,12 +335,12 @@ function drawGame() {
     }
   }
 }
-+RESTART_BUTTON.addEventListener("click", () => endGame(false));
++RESTART_BUTTON.addEventListener('click', () => endGame(false));
 
-MODAL_CLOSE_BUTTON.addEventListener("click", hideModal);
+MODAL_CLOSE_BUTTON.addEventListener('click', hideModal);
 
 // Restart the game by simulating clicks on the modal close and restart button
-MODAL_PLAY_AGAIN_BUTTON.addEventListener("click", () => {
+MODAL_PLAY_AGAIN_BUTTON.addEventListener('click', () => {
   MODAL_CLOSE_BUTTON.click();
   RESTART_BUTTON.click();
 });
