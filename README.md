@@ -24,6 +24,7 @@ Successfully match all 8 pairs of cards.
 * Mobile-first design
 * Flexbox
 * Accessibility (#a11y) / Usability supports: Color choices, font sizing, modal functionality, comfortable touch targets
+* ES2015 (ES6)
 * Active version-control history with subject headings
 
 ---------------
